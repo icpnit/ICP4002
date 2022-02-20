@@ -1,5 +1,7 @@
 # Tests
 material.zip
+in/input*.txt
+out/output*.txt
 
 # Vscode
 .vscode
