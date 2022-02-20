@@ -49,8 +49,8 @@ void init() {
 }
 
 // random function
-int getRand(int low=0, int high=INT32_MAX, bool canBeNegative=false) {
-  int result = rand() % (high - low + 1) + low;
+ll getRand(ll low=0, ll high=INT32_MAX, bool canBeNegative=false) {
+  ll result = rand() % (high - low + 1) + low;
 
   if (canBeNegative) if (rand() % 2 == 0) result = -result;
 
