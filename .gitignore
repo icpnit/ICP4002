@@ -1,6 +1,9 @@
 # Tests
 material.zip
 
+# Vscode
+.vscode
+
 # Prerequisites
 *.d
 
