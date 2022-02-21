@@ -58,6 +58,11 @@ void makeInitTests();
 void makeEdgeTests();
 void makeAutoTests();
 
+// append a string to datastructures
+void append(IOType type, string data) {
+  (type == INPUT ? idata : odata).push_back(data);
+}
+
 void init() {
   // initialize random seed
   srand (time(0));
@@ -102,9 +107,15 @@ void save() {
   int i=0;
   repeat(idata.size()) {
     inf << idata[i] << endl;
-    outf << odata[i] << endl;
 
     i++;
+  }
+
+  int j=0;
+  repeat(odata.size()) {
+    outf << odata[j] << endl;
+
+    j++;
   }
 
   inf.close();
@@ -115,10 +126,8 @@ void save() {
 }
 
 // make a string to the specified string vector
-void makeTest(string input, string output) {
+void makeTest() {
   stepTest();
-  idata.push_back(input);
-  odata.push_back(output);
   save();
 }
 
@@ -133,14 +142,16 @@ int main()
 void makeInitTests() {
   // case 1
   {
-    ll answer = solve(2, 3);
-    makeTest("2 3", to_string(answer));
+    append(INPUT, "2 3");
+    append(OUTPUT, "8");
+    makeTest();
   }
 
   // case 2
   {
-    ll answer = solve(10, 10);
-    makeTest("10 10", to_string(answer));
+    append(INPUT, "10 10");
+    append(OUTPUT, "999999937");
+    makeTest();
   }
 }
 
@@ -148,17 +159,23 @@ void makeInitTests() {
 void makeEdgeTests() {
   // case 3 - zero power I
   {
-    makeTest("1 0", "1");
+    append(INPUT, "1 0");
+    append(OUTPUT, "1");
+    makeTest();
   }
 
   // case 4 - zero power II
   {
-    makeTest("2 0", "1");
+    append(INPUT, "2 0");
+    append(OUTPUT, "1");
+    makeTest();
   }
 
   // case 5 - one power
   {
-    makeTest("12 1", "12");
+    append(INPUT, "12 1");
+    append(OUTPUT, "12");
+    makeTest();
   }
 
   // case 6 - large
@@ -166,9 +183,9 @@ void makeEdgeTests() {
     ll a = 3 * 1e15;
     ll b = 4 * 1e15;
     ll answer = solve(a, b);
-    string input = to_string(a) + " " + to_string(b);
-    string output = to_string(answer);
-    makeTest(input, output);
+    append(INPUT, to_string(a) + " " + to_string(b));
+    append(OUTPUT, to_string(answer));
+    makeTest();
   }
 }
 
@@ -177,10 +194,9 @@ void makeAutoTests() {
   repeat(AUTO_TESTS) {
     ll a = getRand(1) * getRand(1);
     ll b = getRand(1) * getRand(1);
-    ll s = solve(a, b);
-    string input = to_string(a) + " " + to_string(b);
-    string output = to_string(s);
-    cout << test_num << " : " << input << " => " << output << endl;
-    makeTest(input, output);
+    ll answer = solve(a, b);
+    append(INPUT, to_string(a) + " " + to_string(b));
+    append(OUTPUT, to_string(answer));
+    makeTest();
   }
 }
