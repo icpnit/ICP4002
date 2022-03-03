@@ -1,0 +1,8 @@
+7
+cd icpc/../icpc
+pwd
+cd icpc/icpc/icpc/../a/../b
+pwd
+cd /yeho/avaz
+cd shod
+pwd

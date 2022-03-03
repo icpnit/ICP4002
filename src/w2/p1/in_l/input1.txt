@@ -1,0 +1,6 @@
+5
+pwd
+cd /home
+pwd
+cd opmc
+pwd
