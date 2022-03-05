@@ -1,12 +1,18 @@
 # generates testcases for specified problem path
-# usaage: sh gen.sh path/to/folder
+# usage: sh gen.sh path/to/folder
 rm -rf $1/in
 rm -rf $1/out
 
-cd $1
+cpp=$(ls $1 | grep cpp$)
+if [ ! -z "$cpp" ]; then
+  g++ $1/generator.cpp -o generator
+  ./generator
+  rm ./generator
+  exit
+fi
 
-g++ generator.cpp
-
-./a.out
-
-rm ./a.out
+py=$(ls $1 | grep py$)
+if [ ! -z "$py" ]; then
+  python3 $1/generator.py
+  exit
+fi
